@@ -64,7 +64,7 @@ class _EmailPasswordSignInContentsState extends ConsumerState<EmailPasswordSignI
     // only submit if the validation passes
     if (_formKey.currentState!.validate()) {
       final controller = ref.read(singInScreenControllerProvider(widget.formType).notifier);
-      final success = await controller.submit(email, password);
+      final success = await controller.submit(email: email, password: password);
 
       if (success) {
         widget.onSignedIn?.call();

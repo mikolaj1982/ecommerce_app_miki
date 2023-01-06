@@ -1,5 +1,6 @@
 import 'package:ecommerce_app_miki/src/features/authentication/domain/app_user_model.dart';
 import 'package:ecommerce_app_miki/src/features/authentication/domain/fake_app_user.dart';
+import 'package:ecommerce_app_miki/src/utils/delay.dart';
 import 'package:ecommerce_app_miki/src/utils/in_memory_store.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -18,6 +19,10 @@ final authSateChangesProvider = StreamProvider.autoDispose<AppUser?>((ref) {
 });
 
 class FakeAuthRepository implements AuthRepository {
+  final bool addDelay;
+
+  FakeAuthRepository({this.addDelay = true});
+
   final _authState = InMemoryStore<AppUser?>(null);
 
   // List to keep track of all the users accounts
@@ -33,7 +38,7 @@ class FakeAuthRepository implements AuthRepository {
 
   @override
   Future<void> signInWithEmailAndPassword(String email, String password) async {
-    await Future.delayed(const Duration(seconds: 3));
+    await delay(addDelay);
     final user = _users.firstWhere((user) => user?.email == email, orElse: () => null);
 
     if (user == null) {
@@ -64,16 +69,13 @@ class FakeAuthRepository implements AuthRepository {
 
   @override
   Future<void> createUserWithEmailAndPassword(String email, String password) async {
-    await Future.delayed(const Duration(seconds: 3));
-    if (currentUser == null) {
-      _createNewUser(email, password);
-    }
+    await delay(addDelay);
+    _createNewUser(email, password);
   }
 
   @override
   Future<void> signOut() async {
-    await Future.delayed(const Duration(seconds: 3));
-    // throw Exception('Connection failed');
+    await delay(addDelay);
     _authState.value = null;
   }
 

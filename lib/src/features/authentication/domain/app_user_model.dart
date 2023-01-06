@@ -8,11 +8,19 @@ class AppUser {
   final String? email;
 
   @override
-  bool operator ==(covariant AppUser other) => identical(this, other) || (uid == other.uid && email == other.email);
+  bool operator ==(covariant AppUser other) => identical(this, other) || (email == other.email);
 
   @override
   int get hashCode => Object.hashAll([
-        uid,
         email,
       ]);
+
+  // @override
+  // bool operator ==(covariant AppUser other) => identical(this, other) || (uid == other.uid && email == other.email);
+  //
+  // @override
+  // int get hashCode => Object.hashAll([
+  //       uid,
+  //       email,
+  //     ]);
 }

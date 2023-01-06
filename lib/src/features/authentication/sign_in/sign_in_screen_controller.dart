@@ -12,7 +12,7 @@ class SingInScreenController extends StateNotifier<SignInState> {
     required SignInFormType formType,
   }) : super(SignInState(formType: formType));
 
-  Future<bool> submit(String email, String password) async {
+  Future<bool> submit({required String email, required String password}) async {
     state = state.copyWith(value: const AsyncValue.loading());
     final value = await AsyncValue.guard(() => _authenticate(email, password));
     state = state.copyWith(value: value);
