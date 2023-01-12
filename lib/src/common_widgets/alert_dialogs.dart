@@ -4,6 +4,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
+const kDialogDefaultKey = Key('dialog-default-key');
+
 Future<bool?> showAlertDialog({
   required BuildContext context,
   required String title,
@@ -24,6 +26,7 @@ Future<bool?> showAlertDialog({
               onPressed: () => Navigator.of(context).pop(false),
             ),
           TextButton(
+            key: kDialogDefaultKey,
             child: Text(defaultActionText),
             onPressed: () => Navigator.of(context).pop(true),
           ),
@@ -43,6 +46,7 @@ Future<bool?> showAlertDialog({
             onPressed: () => Navigator.of(context).pop(false),
           ),
         CupertinoDialogAction(
+          key: kDialogDefaultKey,
           child: Text(defaultActionText),
           onPressed: () => Navigator.of(context).pop(true),
         ),

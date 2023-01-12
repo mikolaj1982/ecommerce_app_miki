@@ -16,6 +16,7 @@ class HomeAppBar extends ConsumerWidget with PreferredSizeWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final AppUser? user = ref.watch(authSateChangesProvider).value;
     final screenWidth = MediaQuery.of(context).size.width;
+    // debugPrint('HomeAppBar: build: screenWidth: $screenWidth');
     const title = 'useFakeRepository: ${const String.fromEnvironment('useFakeRepository', defaultValue: 'false')}';
 
     if (screenWidth < 600) {
@@ -37,11 +38,13 @@ class HomeAppBar extends ConsumerWidget with PreferredSizeWidget {
               onPressed: () => context.pushNamed(AppRoute.orders.name),
             ),
             ActionTextButton(
+              key: MoreMenuButton.accountKey,
               text: 'Account',
               onPressed: () => context.pushNamed(AppRoute.account.name),
             ),
           ] else ...[
             ActionTextButton(
+              key: MoreMenuButton.signInKey,
               text: 'Sign In',
               onPressed: () => context.pushNamed(AppRoute.signIn.name),
             ),

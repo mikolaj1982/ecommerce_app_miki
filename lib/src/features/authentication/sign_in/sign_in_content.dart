@@ -14,6 +14,10 @@ class EmailPasswordSignInContents extends ConsumerStatefulWidget {
   final VoidCallback? onSignedIn;
   final SignInFormType formType;
 
+  // * Keys for testing using find.byKey()
+  static const emailKey = Key('email');
+  static const passwordKey = Key('password');
+
   const EmailPasswordSignInContents({
     super.key,
     required this.formType,
@@ -72,14 +76,6 @@ class _EmailPasswordSignInContentsState extends ConsumerState<EmailPasswordSignI
     }
   }
 
-  _showSnackBar(String message) {
-    ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(
-        content: Text(message),
-      ),
-    );
-  }
-
   _emailEditingComplete() {
     if (canSubmitEmail(email)) {
       _node.nextFocus();
@@ -112,6 +108,7 @@ class _EmailPasswordSignInContentsState extends ConsumerState<EmailPasswordSignI
             children: [
               TextFormField(
                   controller: _emailController,
+                  key: EmailPasswordSignInContents.emailKey,
                   decoration: InputDecoration(
                     labelText: 'Email',
                     hintText: 'test@test.com',
@@ -135,6 +132,7 @@ class _EmailPasswordSignInContentsState extends ConsumerState<EmailPasswordSignI
               const SizedBox(height: 8),
               TextFormField(
                 controller: _passwordController,
+                key: EmailPasswordSignInContents.passwordKey,
                 decoration: InputDecoration(
                   labelText: 'Password',
                   hintText: 'kupa123',

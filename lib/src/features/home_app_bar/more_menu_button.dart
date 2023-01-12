@@ -14,6 +14,12 @@ class MoreMenuButton extends StatelessWidget {
 
   const MoreMenuButton({super.key, required this.user});
 
+  /// define the key for SignIn
+  static const Key signInKey = Key('signInKey');
+
+  /// define the key for Account
+  static const Key accountKey = Key('accountKey');
+
   @override
   Widget build(BuildContext context) {
     return PopupMenuButton(
@@ -26,12 +32,14 @@ class MoreMenuButton extends StatelessWidget {
                   child: Text('Orders'),
                 ),
                 const PopupMenuItem(
+                  key: accountKey,
                   value: PopupMenuOption.account,
                   child: Text('Account'),
                 ),
               ]
             : <PopupMenuEntry<PopupMenuOption>>[
                 const PopupMenuItem(
+                  key: signInKey,
                   value: PopupMenuOption.sigIn,
                   child: Text('Sign In'),
                 ),

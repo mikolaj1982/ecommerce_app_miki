@@ -42,9 +42,11 @@ class FakeAuthRepository implements AuthRepository {
     final user = _users.firstWhere((user) => user?.email == email, orElse: () => null);
 
     if (user == null) {
+      debugPrint('User not found');
       throw Exception('User not found');
     }
     if (user.password != password) {
+      debugPrint('Wrong password');
       throw Exception('Wrong password');
     }
 
