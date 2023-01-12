@@ -45,3 +45,4 @@ app.*.map.json
 
 coverage/lcov.info
 pubspec.lock
+**/failures/*.png

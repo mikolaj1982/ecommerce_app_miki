@@ -39,6 +39,7 @@ flutter:
   generate: true
 
   fonts:
+    # Used for Golden Image tests
     - family: Roboto
       fonts:
         - asset: assets/fonts/Roboto-Regular.ttf
