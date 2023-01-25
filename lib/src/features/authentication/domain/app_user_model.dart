@@ -14,13 +14,4 @@ class AppUser {
   int get hashCode => Object.hashAll([
         email,
       ]);
-
-  // @override
-  // bool operator ==(covariant AppUser other) => identical(this, other) || (uid == other.uid && email == other.email);
-  //
-  // @override
-  // int get hashCode => Object.hashAll([
-  //       uid,
-  //       email,
-  //     ]);
 }

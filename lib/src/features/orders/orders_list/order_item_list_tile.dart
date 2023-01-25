@@ -1,6 +1,6 @@
 import 'package:ecommerce_app_miki/src/common_widgets/async_value_widget_with_shimmer.dart';
+import 'package:ecommerce_app_miki/src/features/cart/domain/item_model.dart';
 import 'package:ecommerce_app_miki/src/features/products/providers/products_provider.dart';
-import 'package:ecommerce_app_miki/src/models/item_model.dart';
 import 'package:ecommerce_app_miki/src/models/product_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';

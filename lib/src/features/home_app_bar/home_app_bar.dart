@@ -14,7 +14,7 @@ class HomeAppBar extends ConsumerWidget with PreferredSizeWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final AppUser? user = ref.watch(authSateChangesProvider).value;
+    final AppUser? user = ref.watch(authStateChangesProvider).value;
     final screenWidth = MediaQuery.of(context).size.width;
     // debugPrint('HomeAppBar: build: screenWidth: $screenWidth');
     const title = 'useFakeRepository: ${const String.fromEnvironment('useFakeRepository', defaultValue: 'false')}';

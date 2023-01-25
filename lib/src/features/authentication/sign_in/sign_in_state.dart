@@ -28,7 +28,7 @@ class SignInState with EmailAndPasswordValidators {
 
   @override
   String toString() {
-    return 'SignInState{' + ' value: $value,' + ' formType: $formType,' + '}';
+    return 'SignInState{ value: $value, formType: $formType,}';
   }
 
   SignInState copyWith({

@@ -1,4 +1,4 @@
-import 'package:ecommerce_app_miki/src/models/item_model.dart';
+import 'package:ecommerce_app_miki/src/features/cart/domain/item_model.dart';
 import 'package:ecommerce_app_miki/src/models/order_model.dart';
 import 'package:ecommerce_app_miki/src/models/product_model.dart';
 import 'package:ecommerce_app_miki/src/models/review_model.dart';

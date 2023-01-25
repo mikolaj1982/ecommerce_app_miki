@@ -1,13 +1,22 @@
+import 'package:ecommerce_app_miki/src/features/cart/application/cart_service.dart';
 import 'package:ecommerce_app_miki/src/routing/app_router.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
-class ShoppingCartIcon extends StatelessWidget {
+class ShoppingCartIcon extends ConsumerWidget {
   const ShoppingCartIcon({super.key});
 
   @override
-  Widget build(BuildContext context) {
-    const cartItemsCount = 3;
+  Widget build(BuildContext context, WidgetRef ref) {
+    final int cartItemsCount = ref.watch(cartItemsCountProvider);
+
+    // final cartValue = ref.watch(cartStreamProvider);
+    // final itemsCount = cartValue.maybeWhen(
+    //   data: (cart) => cart.items.length,
+    //   orElse: () => 0,
+    // );
+
     return Stack(
       children: [
         Center(
@@ -17,7 +26,7 @@ class ShoppingCartIcon extends StatelessWidget {
           ),
         ),
         if (cartItemsCount > 0)
-          const Positioned(
+          Positioned(
             top: 4.0,
             right: 4.0,
             child: ShoppingCartIconBadge(itemsCount: cartItemsCount),

@@ -1,7 +1,7 @@
 import 'package:ecommerce_app_miki/src/common_widgets/cart_total_with_cta.dart';
 import 'package:ecommerce_app_miki/src/common_widgets/decorated_box_with_shadow.dart';
 import 'package:ecommerce_app_miki/src/common_widgets/responsive_center.dart';
-import 'package:ecommerce_app_miki/src/models/item_model.dart';
+import 'package:ecommerce_app_miki/src/features/cart/domain/item_model.dart';
 import 'package:flutter/material.dart';
 
 class ShoppingCartItemsBuilder extends StatelessWidget {

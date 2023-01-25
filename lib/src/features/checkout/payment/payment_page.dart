@@ -1,7 +1,7 @@
 import 'package:ecommerce_app_miki/src/constants/test_products.dart';
+import 'package:ecommerce_app_miki/src/features/cart/presentation/shopping_cart_item.dart';
+import 'package:ecommerce_app_miki/src/features/cart/presentation/shopping_cart_items_builder.dart';
 import 'package:ecommerce_app_miki/src/features/checkout/payment/payment_button.dart';
-import 'package:ecommerce_app_miki/src/features/shopping_cart/shopping_cart_item.dart';
-import 'package:ecommerce_app_miki/src/features/shopping_cart/shopping_cart_items_builder.dart';
 import 'package:flutter/material.dart';
 
 class PaymentPage extends StatelessWidget {

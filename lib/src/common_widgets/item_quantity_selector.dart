@@ -1,7 +1,16 @@
 import 'package:flutter/material.dart';
 
 class ItemQuantitySelector extends StatelessWidget {
-  const ItemQuantitySelector({Key? key}) : super(key: key);
+  final ValueChanged<int>? onChanged;
+  final int quantity;
+  final int maxQuantity;
+
+  const ItemQuantitySelector({
+    Key? key,
+    required this.quantity,
+    required this.onChanged,
+    required this.maxQuantity,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -17,12 +26,20 @@ class ItemQuantitySelector extends StatelessWidget {
         mainAxisSize: MainAxisSize.min,
         children: [
           IconButton(
-            onPressed: () {},
+            onPressed: quantity > 1
+                ? () {
+                    onChanged?.call(quantity - 1);
+                  }
+                : null,
             icon: const Icon(Icons.remove),
           ),
-          const Text('1'),
+          Text(quantity.toString()),
           IconButton(
-            onPressed: () {},
+            onPressed: quantity < maxQuantity
+                ? () {
+                    onChanged?.call(quantity + 1);
+                  }
+                : null,
             icon: const Icon(Icons.add),
           ),
         ],

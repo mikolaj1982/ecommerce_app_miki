@@ -7,7 +7,9 @@ class AccountScreenController extends StateNotifier<AsyncValue<void>> {
   final AuthRepository authRepository;
 
   // calling with AsyncData(null) initially, const AsyncValue.data(null) means not loading
-  AccountScreenController({required this.authRepository}) : super(const AsyncData<void>(null));
+  AccountScreenController({
+    required this.authRepository,
+  }) : super(const AsyncData<void>(null));
 
   Future<void> signOut() async {
     state = const AsyncLoading();

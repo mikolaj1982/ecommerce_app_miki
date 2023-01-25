@@ -1,6 +1,6 @@
+import 'package:ecommerce_app_miki/src/features/cart/domain/item_model.dart';
 import 'package:ecommerce_app_miki/src/features/orders/orders_list/order_item_list_tile.dart';
 import 'package:ecommerce_app_miki/src/features/orders/orders_list/orders_status_label.dart';
-import 'package:ecommerce_app_miki/src/models/item_model.dart';
 import 'package:ecommerce_app_miki/src/models/order_model.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
