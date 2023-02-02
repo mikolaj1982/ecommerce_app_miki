@@ -97,7 +97,7 @@ class AuthRobot {
     final logoutBtn = find.byKey(kDialogDefaultKey);
     expect(logoutBtn, findsOneWidget);
     await tester.tap(logoutBtn);
-    await tester.pump();
+    await tester.pumpAndSettle();
   }
 
   void expectLogoutDialogFound() {

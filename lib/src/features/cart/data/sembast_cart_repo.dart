@@ -35,7 +35,7 @@ class SembastCartRepo implements LocalCartRepository {
     if (cartJson == null) {
       return const Cart();
     } else {
-      return Cart.fromJson(cartJson);
+      return Cart.fromJson(cartJson.toString());
     }
   }
 
@@ -54,7 +54,7 @@ class SembastCartRepo implements LocalCartRepository {
     final record = store.record(cartItemsKey);
     return record.onSnapshot(database).map((snapshot) {
       if (snapshot != null) {
-        return Cart.fromJson(snapshot.value);
+        return Cart.fromJson(snapshot.value.toString());
       } else {
         return const Cart();
       }

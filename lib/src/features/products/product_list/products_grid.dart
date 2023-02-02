@@ -31,6 +31,7 @@ class ProductsGrid extends ConsumerWidget {
                 itemBuilder: (_, index) {
                   final product = products[index];
                   return ProductCard(
+                    index: index,
                     product: product,
                     onPressed: () => context.goNamed(
                       AppRoute.product.name,
@@ -56,28 +57,30 @@ class ProductsLayoutGrid extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return LayoutBuilder(
-      builder: (context, constraints) {
-        final width = constraints.maxWidth;
-        final crossAxisCount = max(1, width ~/ 250);
-        final columnSizes = List.generate(crossAxisCount, (_) => 1.fr);
-        final numRows = (itemCount / crossAxisCount).ceil();
-        final rowSizes = List.generate(numRows, (_) => auto);
+    return SingleChildScrollView(
+      child: LayoutBuilder(
+        builder: (context, constraints) {
+          final width = constraints.maxWidth;
+          final crossAxisCount = max(1, width ~/ 250);
+          final columnSizes = List.generate(crossAxisCount, (_) => 1.fr);
+          final numRows = (itemCount / crossAxisCount).ceil();
+          final rowSizes = List.generate(numRows, (_) => auto);
 
-        // debugPrint('width: $width');
-        // debugPrint('crossAxisCount: $crossAxisCount');
-        // debugPrint('columnSizes: $columnSizes');
-        // debugPrint('numRows: $numRows');
-        // debugPrint('rowSizes: $rowSizes');
+          // debugPrint('width: $width');
+          // debugPrint('crossAxisCount: $crossAxisCount');
+          // debugPrint('columnSizes: $columnSizes');
+          // debugPrint('numRows: $numRows');
+          // debugPrint('rowSizes: $rowSizes');
 
-        return LayoutGrid(
-          rowGap: 24.0,
-          columnGap: 24.0,
-          columnSizes: columnSizes,
-          rowSizes: rowSizes,
-          children: [for (var i = 0; i < itemCount; i++) itemBuilder(context, i)],
-        );
-      },
+          return LayoutGrid(
+            rowGap: 24.0,
+            columnGap: 24.0,
+            columnSizes: columnSizes,
+            rowSizes: rowSizes,
+            children: [for (var i = 0; i < itemCount; i++) itemBuilder(context, i)],
+          );
+        },
+      ),
     );
   }
 }

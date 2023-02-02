@@ -2,6 +2,7 @@ import 'package:ecommerce_app_miki/src/common_widgets/cart_total_with_cta.dart';
 import 'package:ecommerce_app_miki/src/common_widgets/decorated_box_with_shadow.dart';
 import 'package:ecommerce_app_miki/src/common_widgets/responsive_center.dart';
 import 'package:ecommerce_app_miki/src/features/cart/domain/item_model.dart';
+import 'package:ecommerce_app_miki/src/features/not_found/empty_placeholder_widget.dart';
 import 'package:flutter/material.dart';
 
 class ShoppingCartItemsBuilder extends StatelessWidget {
@@ -18,6 +19,13 @@ class ShoppingCartItemsBuilder extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    /// if there are no items, show a placeholder
+    if (items.isEmpty) {
+      return const EmptyPlaceholderWidget(
+        message: 'Your cart is empty',
+      );
+    }
+
     final screenWidth = MediaQuery.of(context).size.width;
     if (screenWidth >= 600) {
       return ResponsiveCenter(

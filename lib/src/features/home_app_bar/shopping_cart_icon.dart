@@ -7,6 +7,9 @@ import 'package:go_router/go_router.dart';
 class ShoppingCartIcon extends ConsumerWidget {
   const ShoppingCartIcon({super.key});
 
+  // * Keys for testing using find.byKey()
+  static const shoppingCartIconKey = Key('shopping-cart');
+
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final int cartItemsCount = ref.watch(cartItemsCountProvider);
@@ -21,6 +24,7 @@ class ShoppingCartIcon extends ConsumerWidget {
       children: [
         Center(
           child: IconButton(
+            key: shoppingCartIconKey,
             icon: const Icon(Icons.shopping_cart),
             onPressed: () => context.pushNamed(AppRoute.cart.name),
           ),

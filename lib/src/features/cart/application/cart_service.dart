@@ -54,7 +54,7 @@ class CartService {
   }
 
   Future<void> addItem(Item item) async {
-    debugPrint('CartService class addItem method: $item');
+    // debugPrint('CartService class addItem method: $item');
     final Cart cart = await _fetchCart();
     final newCart = cart.addItem(item);
     for (item in newCart.toItemsList()) {

@@ -106,6 +106,10 @@ class EditOrRemoveItemWidget extends ConsumerWidget {
     required this.product,
   });
 
+
+  // * Keys for testing using find.byKey()
+  static Key deleteKey(int index) => Key('delete-$index');
+
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final state = ref.watch(shoppingCartScreenControllerProvider);
@@ -116,6 +120,7 @@ class EditOrRemoveItemWidget extends ConsumerWidget {
         ItemQuantitySelector(
           maxQuantity: product.availableQuantity ,
           quantity: item.quantity,
+          itemIndex: itemIndex,
           onChanged: state.isLoading
               ? null
               : (int quantity) {
@@ -124,6 +129,7 @@ class EditOrRemoveItemWidget extends ConsumerWidget {
                 },
         ),
         IconButton(
+          key: deleteKey(itemIndex),
           icon: const Icon(Icons.delete, color: Colors.red),
           onPressed: state.isLoading
               ? null
