@@ -2,10 +2,12 @@ import 'dart:async';
 
 import 'package:ecommerce_app_miki/src/app.dart';
 import 'package:ecommerce_app_miki/src/features/cart/application/cart_sync_service.dart';
+import 'package:ecommerce_app_miki/src/features/cart/application/wish_list_service.dart';
 import 'package:ecommerce_app_miki/src/features/cart/data/local/local_cart_repo.dart';
 import 'package:ecommerce_app_miki/src/features/cart/data/remote/fake_remote_cart_repo.dart';
 import 'package:ecommerce_app_miki/src/features/cart/data/remote/remote_cart_repo.dart';
 import 'package:ecommerce_app_miki/src/features/cart/data/sembast_cart_repo.dart';
+import 'package:ecommerce_app_miki/src/features/cart/data/sembast_wish_list.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_web_plugins/url_strategy.dart';
@@ -17,12 +19,14 @@ void main() async {
 
     /// trick to access async provider in a synchronous way
     final localCartRepo = await SembastCartRepo.makeDefault();
+    final localWishListRepo = await SembastWishListRepo.makeDefault();
 
     /// * Create ProviderContainer with any required overrides
     final container = ProviderContainer(
       overrides: [
         localCartRepoProvider.overrideWithValue(localCartRepo),
         remoteCartRepoProvider.overrideWithValue(FakeRemoteCartRepository()),
+        sembastWishListRepoProvider.overrideWithValue(localWishListRepo),
       ],
     );
 

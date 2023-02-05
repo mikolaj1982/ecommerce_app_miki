@@ -1,7 +1,9 @@
 import 'package:ecommerce_app_miki/src/common_widgets/item_quantity_selector.dart';
 import 'package:ecommerce_app_miki/src/common_widgets/primary_button.dart';
 import 'package:ecommerce_app_miki/src/features/cart/application/cart_service.dart';
+import 'package:ecommerce_app_miki/src/features/cart/application/wish_list_service.dart';
 import 'package:ecommerce_app_miki/src/features/products/product_page/add_to_cart_controller.dart';
+import 'package:ecommerce_app_miki/src/features/products/product_page/add_to_wish_list_controller.dart';
 import 'package:ecommerce_app_miki/src/models/product_model.dart';
 import 'package:ecommerce_app_miki/src/utils/async_value_ui.dart';
 import 'package:flutter/material.dart';
@@ -24,6 +26,8 @@ class AddToCartWidget extends ConsumerWidget {
 
     final AsyncValue state = ref.watch(addToCartControllerProvider);
     // debugPrint('state: $state');
+
+    final AsyncValue<bool> isProductOnWishList = ref.watch(isProductInWishListStreamProvider(product.id));
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -55,6 +59,29 @@ class AddToCartWidget extends ConsumerWidget {
               : null,
           isLoading: state.isLoading,
           text: availableQuantity > 0 ? 'Add to Cart' : 'Out of Stock',
+        ),
+        isProductOnWishList.when(
+          data: (bool isProductOnWishList) {
+            if(isProductOnWishList == true){
+              return PrimaryButton(
+                onPressed: () {
+                  ref.read(addToWishListControllerProvider.notifier).removeItemById(product.id);
+                },
+                isLoading: state.isLoading,
+                text: 'Remove from Wish List',
+              );
+            } else {
+              return PrimaryButton(
+                onPressed: () {
+                  ref.read(addToWishListControllerProvider.notifier).addItemToWishList(product.id);
+                },
+                isLoading: state.isLoading,
+                text: 'Add to Wish List',
+              );
+            }
+          },
+          loading: () => const CircularProgressIndicator(),
+          error: (Object error, StackTrace? stackTrace) => const Text('Error'),
         ),
       ],
     );

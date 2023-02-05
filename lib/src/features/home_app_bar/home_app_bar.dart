@@ -2,6 +2,7 @@ import 'package:ecommerce_app_miki/src/common_widgets/action_text_button.dart';
 import 'package:ecommerce_app_miki/src/features/authentication/data/fake_auth_repository.dart';
 import 'package:ecommerce_app_miki/src/features/authentication/domain/app_user_model.dart';
 import 'package:ecommerce_app_miki/src/features/home_app_bar/shopping_cart_icon.dart';
+import 'package:ecommerce_app_miki/src/features/home_app_bar/wish_list_icon.dart';
 import 'package:ecommerce_app_miki/src/routing/app_router.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -24,6 +25,7 @@ class HomeAppBar extends ConsumerWidget with PreferredSizeWidget {
         title: const Text(title),
         actions: [
           const ShoppingCartIcon(),
+          const WishListIcon(),
           MoreMenuButton(user: user),
         ],
       );

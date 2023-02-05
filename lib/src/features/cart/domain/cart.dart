@@ -53,6 +53,9 @@ class Cart {
     return Cart(newItems);
   }
 
+  containsItemWithId(ProductID productId) {
+    return items.containsKey(productId);
+  }
 }
 
 extension CartItems on Cart {

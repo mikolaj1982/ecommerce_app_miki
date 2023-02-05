@@ -10,6 +10,16 @@ class Item {
     required this.quantity,
   });
 
+  Item copyWith({
+    ProductID? productId,
+    int? quantity,
+  }) {
+    return Item(
+      productId: productId ?? this.productId,
+      quantity: quantity ?? this.quantity,
+    );
+  }
+
   @override
   String toString() => 'Item(productId: $productId, quantity: $quantity)';
 

@@ -3,6 +3,7 @@ import 'package:ecommerce_app_miki/src/features/authentication/data/fake_auth_re
 import 'package:ecommerce_app_miki/src/features/authentication/sign_in/sign_in_form_type.dart';
 import 'package:ecommerce_app_miki/src/features/authentication/sign_in/sign_in_screen.dart';
 import 'package:ecommerce_app_miki/src/features/cart/presentation/shopping_cart_screen.dart';
+import 'package:ecommerce_app_miki/src/features/cart/presentation/wish_list_screen.dart';
 import 'package:ecommerce_app_miki/src/features/checkout/checkout_screen.dart';
 import 'package:ecommerce_app_miki/src/features/leave_review_page/leave_review_screen.dart';
 import 'package:ecommerce_app_miki/src/features/not_found/not_found_screen.dart';
@@ -18,6 +19,7 @@ import 'go_router_refresh_stream.dart';
 enum AppRoute {
   home,
   cart,
+  wishList,
   orders,
   account,
   checkout,
@@ -94,6 +96,15 @@ final goRouterProvider = Provider<GoRouter>((ref) {
                 ),
               ),
             ],
+          ),
+          GoRoute(
+            path: 'wishList',
+            name: AppRoute.wishList.name,
+            pageBuilder: (context, state) => MaterialPage(
+              key: state.pageKey,
+              fullscreenDialog: true,
+              child: const WishListScreen(),
+            ),
           ),
           GoRoute(
             path: 'orders',

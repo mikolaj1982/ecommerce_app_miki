@@ -4,6 +4,7 @@ import 'package:ecommerce_app_miki/src/common_widgets/responsive_center.dart';
 import 'package:ecommerce_app_miki/src/features/cart/domain/item_model.dart';
 import 'package:ecommerce_app_miki/src/features/not_found/empty_placeholder_widget.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
 class ShoppingCartItemsBuilder extends StatelessWidget {
   final List<Item> items;
@@ -21,9 +22,15 @@ class ShoppingCartItemsBuilder extends StatelessWidget {
   Widget build(BuildContext context) {
     /// if there are no items, show a placeholder
     if (items.isEmpty) {
-      return const EmptyPlaceholderWidget(
-        message: 'Your cart is empty',
-      );
+      if (GoRouterState.of(context).name == 'wishList') {
+        return const EmptyPlaceholderWidget(
+          message: 'Your wish list is empty',
+        );
+      } else {
+        return const EmptyPlaceholderWidget(
+          message: 'Your cart is empty',
+        );
+      }
     }
 
     final screenWidth = MediaQuery.of(context).size.width;
