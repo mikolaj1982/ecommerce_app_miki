@@ -18,7 +18,6 @@ void main() {
   });
 
   testWidgets('Confirm logout, success', (WidgetTester tester) async {
-    debugPrint('test');
     final r = AuthRobot(tester: tester);
     final authRepository = FakeAuthRepository(addDelay: false);
     await r.pumpAccountScreen(authRepository: authRepository);

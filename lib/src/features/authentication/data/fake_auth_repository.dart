@@ -1,3 +1,4 @@
+import 'package:ecommerce_app_miki/src/exceptions/app_exception.dart';
 import 'package:ecommerce_app_miki/src/features/authentication/domain/app_user_model.dart';
 import 'package:ecommerce_app_miki/src/features/authentication/domain/fake_app_user.dart';
 import 'package:ecommerce_app_miki/src/utils/delay.dart';
@@ -42,12 +43,10 @@ class FakeAuthRepository implements AuthRepository {
     final user = _users.firstWhere((user) => user?.email == email, orElse: () => null);
 
     if (user == null) {
-      debugPrint('User not found');
-      throw Exception('User not found');
+      throw const AppException.userNotFound();
     }
-    if (user.password != password) {
-      debugPrint('Wrong password');
-      throw Exception('Wrong password');
+    if (user.email == email && user.password != password) {
+      throw const AppException.wrongPassword();
     }
 
     debugPrint('user found : $user');
@@ -72,6 +71,15 @@ class FakeAuthRepository implements AuthRepository {
   @override
   Future<void> createUserWithEmailAndPassword(String email, String password) async {
     await delay(addDelay);
+    final user = _users.firstWhere((user) => user?.email == email, orElse: () => null);
+    if (user != null) {
+      throw const AppException.emailAlreadyInUse();
+    }
+
+    if(password.length < 7){
+      throw const AppException.weakPassword();
+    }
+
     _createNewUser(email, password);
   }
 

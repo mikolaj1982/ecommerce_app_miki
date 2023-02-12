@@ -13,6 +13,7 @@ import 'package:go_router/go_router.dart';
 
 class ShoppingCartScreen extends ConsumerWidget {
   const ShoppingCartScreen({super.key});
+  static const checkoutButtonKey = Key('checkoutButtonKey');
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -46,6 +47,7 @@ class ShoppingCartScreen extends ConsumerWidget {
                   itemIndex: index,
                 ),
                 ctaBuilder: (_) => PrimaryButton(
+                  key: checkoutButtonKey,
                   isLoading: state.isLoading,
                   text: 'Checkout',
                   onPressed: () => context.pushNamed(AppRoute.checkout.name),

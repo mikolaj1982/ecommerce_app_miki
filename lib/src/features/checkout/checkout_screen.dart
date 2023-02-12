@@ -5,11 +5,16 @@ import 'package:ecommerce_app_miki/src/features/checkout/payment/payment_page.da
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+/// The two sub-routes that are present in the checkout flow.
 enum CheckoutSubRoute {
   register,
   payment,
 }
 
+/// This is the root widget of the checkout flow, which is composed of 2 pages:
+/// 1. Register Page
+/// 2. Payment Page
+/// is showing the correct page based on the user's authentication state.
 class CheckoutScreen extends ConsumerStatefulWidget {
   const CheckoutScreen({super.key});
 
@@ -55,7 +60,8 @@ class _CheckoutScreenState extends ConsumerState<CheckoutScreen> {
         title: Text(title),
       ),
       body: PageView(
-        physics: const NeverScrollableScrollPhysics(),
+        physics: const NeverScrollableScrollPhysics(),// to prevent swiping between pages
+        // physics: const BouncingScrollPhysics(), // allow for swiping for test
         controller: _controller,
         children: [
           EmailPasswordSignInContents(

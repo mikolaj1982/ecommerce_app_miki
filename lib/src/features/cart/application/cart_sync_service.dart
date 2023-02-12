@@ -1,3 +1,4 @@
+import 'package:ecommerce_app_miki/src/exceptions/error_logger.dart';
 import 'package:ecommerce_app_miki/src/features/authentication/data/fake_auth_repository.dart';
 import 'package:ecommerce_app_miki/src/features/authentication/domain/app_user_model.dart';
 import 'package:ecommerce_app_miki/src/features/cart/data/local/local_cart_repo.dart';
@@ -46,8 +47,8 @@ class CartSyncService {
         /// remove all items from the local cart
         await ref.read(localCartRepoProvider).setCart(const Cart());
       }
-    } catch (e) {
-      debugPrint('error $e');
+    } catch (e, st) {
+      ref.read(errorLoggerProvider).logError(e, st);
     }
   }
 }

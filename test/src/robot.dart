@@ -14,6 +14,7 @@ import 'package:flutter_test/flutter_test.dart';
 
 import 'features/authentication/auth_robot.dart';
 import 'features/cart/cart_robot.dart';
+import 'features/checkout/checkout_robot.dart';
 import 'features/products/product_robot.dart';
 import 'goldens/golden_robot.dart';
 
@@ -23,11 +24,13 @@ class Robot {
   final ProductRobot productRobot;
   final GoldenRobot goldenRobot;
   final CartRobot cartRobot;
+  final CheckoutRobot checkoutRobot;
 
   Robot({required this.tester})
       : authRobot = AuthRobot(tester: tester),
         productRobot = ProductRobot(tester: tester),
         cartRobot = CartRobot(tester: tester),
+        checkoutRobot = CheckoutRobot(tester: tester),
         goldenRobot = GoldenRobot(tester: tester);
 
   Future<void> pumpMyApp() async {

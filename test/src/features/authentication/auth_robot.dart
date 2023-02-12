@@ -76,7 +76,6 @@ class AuthRobot {
   }
 
   Future<void> submit() async {
-    debugPrint('PrimaryButton clicked');
     final signInBtn = find.byType(PrimaryButton);
     expect(signInBtn, findsOneWidget);
     await tester.tap(signInBtn);
@@ -147,5 +146,12 @@ class AuthRobot {
   void expectCreateAccountButtonNotFound() {
     final createAccountBtn = find.text('Create an account');
     expect(createAccountBtn, findsNothing);
+  }
+
+  void expectEmailAndPasswordFieldsFound() {
+    final emailField = find.byKey(EmailPasswordSignInContents.emailKey);
+    expect(emailField, findsOneWidget);
+    final passwordField = find.byKey(EmailPasswordSignInContents.passwordKey);
+    expect(passwordField, findsOneWidget);
   }
 }

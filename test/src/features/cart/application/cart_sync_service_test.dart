@@ -1,12 +1,10 @@
 import 'package:ecommerce_app_miki/src/common_widgets/typedefs.dart';
-import 'package:ecommerce_app_miki/src/constants/test_products.dart';
 import 'package:ecommerce_app_miki/src/features/authentication/data/fake_auth_repository.dart';
 import 'package:ecommerce_app_miki/src/features/authentication/domain/app_user_model.dart';
 import 'package:ecommerce_app_miki/src/features/cart/application/cart_sync_service.dart';
 import 'package:ecommerce_app_miki/src/features/cart/data/local/local_cart_repo.dart';
 import 'package:ecommerce_app_miki/src/features/cart/data/remote/remote_cart_repo.dart';
 import 'package:ecommerce_app_miki/src/features/cart/domain/cart.dart';
-import 'package:ecommerce_app_miki/src/features/products/providers/products_provider.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
