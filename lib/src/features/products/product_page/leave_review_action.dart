@@ -1,13 +1,19 @@
 import 'package:ecommerce_app_miki/src/common_widgets/custom_text_button.dart';
 import 'package:ecommerce_app_miki/src/common_widgets/responsive_two_columns_layout.dart';
 import 'package:ecommerce_app_miki/src/common_widgets/typedefs.dart';
+import 'package:ecommerce_app_miki/src/features/orders/user_orders_provider.dart';
+import 'package:ecommerce_app_miki/src/features/reviews/review_service.dart';
+import 'package:ecommerce_app_miki/src/models/order_model.dart';
 import 'package:ecommerce_app_miki/src/models/purchase_model.dart';
+import 'package:ecommerce_app_miki/src/models/review_model.dart';
 import 'package:ecommerce_app_miki/src/routing/app_router.dart';
+import 'package:ecommerce_app_miki/src/utils/utils.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:intl/intl.dart';
 
-class LeaveReviewAction extends StatelessWidget {
+class LeaveReviewAction extends ConsumerWidget {
   final ProductID productId;
 
   const LeaveReviewAction({
@@ -16,13 +22,12 @@ class LeaveReviewAction extends StatelessWidget {
   }) : super(key: key);
 
   @override
-  Widget build(BuildContext context) {
-    final Purchase purchase = Purchase(
-      orderId: 'abc',
-      orderDate: DateTime.now(),
-    );
-    if (purchase != null) {
-      final dateFormatted = DateFormat.yMMMd().format(purchase.orderDate);
+  Widget build(BuildContext context, WidgetRef ref) {
+    final List<Order>? orders = ref.watch(userOrdersByProductProvider(productId)).value;
+    if (orders != null && orders.isNotEmpty) {
+      // debugPrint('got orders for current user for product $productId: $orders');
+      final dateFormatted = ref.watch(dateFormatterProvider).format(orders.first.orderDate);
+      final Review? reviewValue = ref.watch(userReviewProvider(productId)).value;
       return Column(
         children: [
           const Divider(),
@@ -37,8 +42,8 @@ class LeaveReviewAction extends StatelessWidget {
             columnCrossAxisAlignment: CrossAxisAlignment.center,
             startWidget: Text('Purchased on $dateFormatted'),
             endWidget: CustomTextButton(
-              text: 'Leave a review',
-              style: Theme.of(context).textTheme.bodyText1!.copyWith(color: Colors.blue[700]),
+              text: (reviewValue != null) ? 'Update a review' : 'Leave a review',
+              style: Theme.of(context).textTheme.bodyLarge!.copyWith(color: Colors.blue[700]),
               onPressed: () => context.goNamed(
                 AppRoute.review.name,
                 params: {'id': productId},
@@ -49,7 +54,7 @@ class LeaveReviewAction extends StatelessWidget {
         ],
       );
     } else {
-      return const SizedBox();
+      return const SizedBox.shrink();
     }
   }
 }

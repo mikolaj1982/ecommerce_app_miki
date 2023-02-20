@@ -44,6 +44,21 @@ class _EmailPasswordSignInContentsState extends ConsumerState<EmailPasswordSignI
   late SignInFormType _formType = widget.formType;
 
   @override
+  void initState() {
+    /// only for testing purposes
+    setState(() {
+      Future.delayed(Duration.zero, () {
+        _updateFormType();
+        _emailController.text = 'test@test.com';
+        _passwordController.text = 'kupa123';
+      });
+
+    });
+
+    super.initState();
+  }
+
+  @override
   void dispose() {
     _emailController.dispose();
     _passwordController.dispose();

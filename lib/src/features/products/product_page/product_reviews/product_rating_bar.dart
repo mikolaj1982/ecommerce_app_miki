@@ -2,12 +2,27 @@ import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 
 class ProductRatingBar extends StatelessWidget {
-  const ProductRatingBar({Key? key}) : super(key: key);
+  final double initialRating;
+  final ValueChanged<double> onRatingChanged;
+
+  // if true widget won't be interactive
+  final bool ignoreGestures;
+  final double itemSize;
+
+  const ProductRatingBar({
+    Key? key,
+    required this.initialRating,
+    this.itemSize = 40,
+    required this.onRatingChanged,
+    this.ignoreGestures = false,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return RatingBar.builder(
-      initialRating: 3,
+      itemSize: itemSize,
+      ignoreGestures: ignoreGestures,
+      initialRating: initialRating,
       minRating: 1,
       direction: Axis.horizontal,
       allowHalfRating: true,
@@ -18,7 +33,7 @@ class ProductRatingBar extends StatelessWidget {
         color: Colors.amber,
       ),
       onRatingUpdate: (rating) {
-        debugPrint(rating.toString());
+        onRatingChanged(rating);
       },
     );
   }

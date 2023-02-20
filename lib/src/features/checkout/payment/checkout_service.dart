@@ -4,6 +4,7 @@ import 'package:ecommerce_app_miki/src/features/cart/data/remote/remote_cart_rep
 import 'package:ecommerce_app_miki/src/features/cart/domain/cart.dart';
 import 'package:ecommerce_app_miki/src/features/orders/fake_orders_repository.dart';
 import 'package:ecommerce_app_miki/src/models/order_model.dart';
+import 'package:ecommerce_app_miki/src/utils/utils.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class FakeCheckoutService {
@@ -15,14 +16,17 @@ class FakeCheckoutService {
     final ordersRepo = ref.watch(fakeOrdersRepoProvider);
     final authRepo = ref.watch(authRepositoryProvider);
     final remoteCartRepo = ref.watch(remoteCartRepoProvider);
+    final currentDateBuilder = ref.watch(currentDateBuilderProvider);
 
     final uid = authRepo.currentUser!.uid;
+
     /// 1. Fetch the cart object
     final cart = await remoteCartRepo.fetchCart(uid);
     if (cart.items.isNotEmpty) {
       final total = ref.read(cartTotalProvider);
-      final currentDate = DateTime.now();
+      final currentDate = currentDateBuilder();
       final orderId = currentDate.toIso8601String();
+
       /// 2. Create an order
       final order = Order(
         id: orderId,
@@ -32,8 +36,10 @@ class FakeCheckoutService {
         orderDate: currentDate,
         total: total,
       );
+
       /// 3. Save it using the repository
       await ordersRepo.addOrder(uid, order);
+
       /// 4. Empty rhe cart
       await remoteCartRepo.setCart(uid, const Cart());
     } else {

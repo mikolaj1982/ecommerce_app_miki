@@ -4,6 +4,7 @@ import 'package:ecommerce_app_miki/src/common_widgets/responsive_two_columns_lay
 import 'package:ecommerce_app_miki/src/common_widgets/typedefs.dart';
 import 'package:ecommerce_app_miki/src/features/home_app_bar/home_app_bar.dart';
 import 'package:ecommerce_app_miki/src/features/not_found/empty_placeholder_widget.dart';
+import 'package:ecommerce_app_miki/src/features/products/product_page/product_average_rating.dart';
 import 'package:ecommerce_app_miki/src/features/products/product_page/product_reviews/products_reviews_list.dart';
 import 'package:ecommerce_app_miki/src/features/products/providers/products_provider.dart';
 import 'package:ecommerce_app_miki/src/models/product_model.dart';
@@ -39,7 +40,7 @@ class ProductScreen extends StatelessWidget {
                           product: product,
                         ),
                       ),
-                      const ProductReviewsList(),
+                      ProductReviewsList(productId: productId),
                     ]);
             },
           );
@@ -75,18 +76,21 @@ class ProductDetails extends StatelessWidget {
             children: [
               Text(
                 product.title,
-                style: Theme.of(context).textTheme.headline6,
+                style: Theme.of(context).textTheme.titleLarge,
               ),
               const SizedBox(height: 8),
               Text(
                 product.description,
-                style: Theme.of(context).textTheme.bodyText2,
+                style: Theme.of(context).textTheme.bodyMedium,
               ),
+              if (product.numRatings >= 1) ...[
+                ProductAverageRating(product: product),
+              ],
               const Divider(),
               const SizedBox(height: 8),
               Text(
                 priceFormatted,
-                style: Theme.of(context).textTheme.headline6,
+                style: Theme.of(context).textTheme.titleLarge,
               ),
               const SizedBox(height: 8),
               LeaveReviewAction(productId: product.id),

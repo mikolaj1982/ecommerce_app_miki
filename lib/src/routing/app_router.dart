@@ -5,11 +5,11 @@ import 'package:ecommerce_app_miki/src/features/authentication/sign_in/sign_in_s
 import 'package:ecommerce_app_miki/src/features/cart/presentation/shopping_cart_screen.dart';
 import 'package:ecommerce_app_miki/src/features/cart/presentation/wish_list_screen.dart';
 import 'package:ecommerce_app_miki/src/features/checkout/checkout_screen.dart';
-import 'package:ecommerce_app_miki/src/features/leave_review_page/leave_review_screen.dart';
 import 'package:ecommerce_app_miki/src/features/not_found/not_found_screen.dart';
 import 'package:ecommerce_app_miki/src/features/orders/orders_list/orders_list_screen.dart';
 import 'package:ecommerce_app_miki/src/features/products/product_list/product_list_screen.dart';
 import 'package:ecommerce_app_miki/src/features/products/product_page/product_screen.dart';
+import 'package:ecommerce_app_miki/src/features/reviews/leave_review_page/leave_review_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';

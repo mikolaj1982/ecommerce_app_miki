@@ -8,3 +8,8 @@ final dateFormatterProvider = Provider<DateFormat>((ref) {
 final currencyFormatterProvider = Provider<NumberFormat>((ref) {
   return NumberFormat.simpleCurrency(locale: 'en_US');
 });
+
+/// allows up to mock the date inside our test
+final currentDateBuilderProvider = Provider<DateTime Function()>((ref) {
+  return () => DateTime.now();
+});

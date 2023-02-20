@@ -1,8 +1,7 @@
 import 'package:ecommerce_app_miki/src/common_widgets/typedefs.dart';
 import 'package:ecommerce_app_miki/src/features/cart/application/cart_service.dart';
+import 'package:ecommerce_app_miki/src/features/cart/domain/item_model.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-
-import '../../cart/domain/item_model.dart';
 
 class AddToCartController extends StateNotifier<AsyncValue<void>> {
   final CartService cartService;

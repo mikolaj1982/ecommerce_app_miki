@@ -71,22 +71,22 @@ const shoppingCartItems = [
 
 final testReviews = [
   Review(
-    score: 5,
+    rating: 5,
     comment: 'Great product, would buy again!',
     date: DateTime(2022, 2, 12),
   ),
   Review(
-    score: 4,
+    rating: 4,
     comment: 'Looks great but the packaging was damaged.',
     date: DateTime(2022, 2, 10),
   ),
   Review(
-    score: 5,
+    rating: 5,
     comment: 'Great product, would buy again!',
     date: DateTime(2022, 2, 12),
   ),
   Review(
-    score: 4,
+    rating: 4,
     comment: 'Looks great but the packaging was damaged.',
     date: DateTime(2022, 2, 10),
   ),
@@ -100,8 +100,6 @@ final testProducts = [
     description: 'Lorem ipsum',
     price: 15,
     availableQuantity: 5,
-    avgRating: 4.5,
-    numRatings: 2,
   ),
   Product(
     id: '2',
@@ -110,8 +108,6 @@ final testProducts = [
     description: 'Lorem ipsum',
     price: 13,
     availableQuantity: 5,
-    avgRating: 4,
-    numRatings: 2,
   ),
   Product(
     id: '3',
@@ -120,8 +116,6 @@ final testProducts = [
     description: 'Lorem ipsum',
     price: 17,
     availableQuantity: 5,
-    avgRating: 5,
-    numRatings: 2,
   ),
   Product(
     id: '4',
