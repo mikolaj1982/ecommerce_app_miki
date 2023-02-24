@@ -3,7 +3,6 @@ import 'package:ecommerce_app_miki/src/features/cart/application/cart_service.da
 import 'package:ecommerce_app_miki/src/features/cart/domain/cart.dart';
 import 'package:ecommerce_app_miki/src/features/products/providers/products_provider.dart';
 import 'package:ecommerce_app_miki/src/models/product_model.dart';
-import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_test/flutter_test.dart';
 

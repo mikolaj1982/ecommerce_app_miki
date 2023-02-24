@@ -74,12 +74,12 @@ class ShoppingCartItemContents extends ConsumerWidget {
         children: [
           Text(
             product.title,
-            style: Theme.of(context).textTheme.headline6,
+            style: Theme.of(context).textTheme.titleLarge,
           ),
           const SizedBox(height: 8),
           Text(
             '\$${product.price}',
-            style: Theme.of(context).textTheme.subtitle1,
+            style: Theme.of(context).textTheme.titleMedium,
           ),
           const SizedBox(height: 8),
           if (isEditable)

@@ -1,7 +1,4 @@
-import 'package:ecommerce_app_miki/src/constants/test_products.dart';
 import 'package:ecommerce_app_miki/src/features/cart/presentation/shopping_cart_screen.dart';
-import 'package:ecommerce_app_miki/src/features/products/product_list/products_card.dart';
-import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 class CheckoutRobot {

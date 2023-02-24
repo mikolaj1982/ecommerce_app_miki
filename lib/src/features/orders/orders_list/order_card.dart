@@ -53,7 +53,7 @@ class OrderHeader extends StatelessWidget {
                 children: [
                   Text(
                     'Order placed'.toUpperCase(),
-                    style: Theme.of(context).textTheme.caption,
+                    style: Theme.of(context).textTheme.bodySmall,
                   ),
                   const SizedBox(height: 4),
                   Text(dateFormatted),
@@ -65,7 +65,7 @@ class OrderHeader extends StatelessWidget {
                   Text(
                     'Total'.toUpperCase(),
                     textAlign: TextAlign.end,
-                    style: Theme.of(context).textTheme.caption,
+                    style: Theme.of(context).textTheme.bodySmall,
                   ),
                   const SizedBox(height: 4),
                   Text(totalFormatted),

@@ -40,7 +40,7 @@ class OrderItemListTile extends ConsumerWidget {
                     const SizedBox(width: 8),
                     Text(
                       'Quantity: ${item.quantity}',
-                      style: Theme.of(context).textTheme.caption,
+                      style: Theme.of(context).textTheme.bodySmall,
                     ),
                   ],
                 ),

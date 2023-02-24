@@ -1,10 +1,8 @@
 import 'package:ecommerce_app_miki/src/common_widgets/primary_button.dart';
 import 'package:ecommerce_app_miki/src/features/checkout/payment/payment_button_controller.dart';
-import 'package:ecommerce_app_miki/src/routing/app_router.dart';
 import 'package:ecommerce_app_miki/src/utils/async_value_ui.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:go_router/go_router.dart';
 
 class PaymentButton extends ConsumerWidget {
   const PaymentButton({super.key});

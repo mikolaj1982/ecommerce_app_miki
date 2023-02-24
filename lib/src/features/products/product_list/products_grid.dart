@@ -1,10 +1,8 @@
 import 'dart:math';
 
 import 'package:ecommerce_app_miki/src/common_widgets/async_value_widget.dart';
-import 'package:ecommerce_app_miki/src/features/products/data/fake_products_repository.dart';
 import 'package:ecommerce_app_miki/src/features/products/product_list/products_card.dart';
 import 'package:ecommerce_app_miki/src/features/products/product_list/products_search_state_provider.dart';
-import 'package:ecommerce_app_miki/src/features/products/providers/products_provider.dart';
 import 'package:ecommerce_app_miki/src/models/product_model.dart';
 import 'package:ecommerce_app_miki/src/routing/app_router.dart';
 import 'package:flutter/material.dart';

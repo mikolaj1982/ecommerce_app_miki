@@ -1,6 +1,5 @@
 import 'package:ecommerce_app_miki/src/features/authentication/data/fake_auth_repository.dart';
 import 'package:ecommerce_app_miki/src/features/authentication/domain/app_user_model.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
 

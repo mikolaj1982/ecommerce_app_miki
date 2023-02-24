@@ -3,7 +3,6 @@ import 'package:ecommerce_app_miki/src/common_widgets/primary_button.dart';
 import 'package:ecommerce_app_miki/src/common_widgets/responsive_scrollable_card.dart';
 import 'package:ecommerce_app_miki/src/features/authentication/sign_in/sign_in_form_type.dart';
 import 'package:ecommerce_app_miki/src/features/authentication/sign_in/sign_in_screen_controller.dart';
-import 'package:ecommerce_app_miki/src/features/authentication/sign_in/sign_in_state.dart';
 import 'package:ecommerce_app_miki/src/features/authentication/sign_in/sign_in_validators.dart';
 import 'package:ecommerce_app_miki/src/features/authentication/sign_in/string_validators.dart';
 import 'package:ecommerce_app_miki/src/utils/async_value_ui.dart';
@@ -46,14 +45,13 @@ class _EmailPasswordSignInContentsState extends ConsumerState<EmailPasswordSignI
   @override
   void initState() {
     /// only for testing purposes
-    setState(() {
-      Future.delayed(Duration.zero, () {
-        _updateFormType();
-        _emailController.text = 'test@test.com';
-        _passwordController.text = 'kupa123';
-      });
-
-    });
+    // setState(() {
+    //   Future.delayed(Duration.zero, () {
+    //     _updateFormType();
+    //     _emailController.text = 'test@test.com';
+    //     _passwordController.text = 'kupa123';
+    //   });
+    // });
 
     super.initState();
   }
@@ -68,10 +66,7 @@ class _EmailPasswordSignInContentsState extends ConsumerState<EmailPasswordSignI
 
   void _updateFormType() async {
     /// toggle between register and sign in form
-    final controller = ref.read(singInScreenControllerProvider(widget.formType).notifier);
-
-    _formType = _formType == SignInFormType.signIn ? SignInFormType.register : SignInFormType.signIn;
-    controller.updateFormType(_formType);
+    setState(() => _formType = _formType.secondaryActionFormType);
 
     // clear the password controllers
     _passwordController.clear();
@@ -82,8 +77,8 @@ class _EmailPasswordSignInContentsState extends ConsumerState<EmailPasswordSignI
 
     // only submit if the validation passes
     if (_formKey.currentState!.validate()) {
-      final controller = ref.read(singInScreenControllerProvider(widget.formType).notifier);
-      final success = await controller.submit(email: email, password: password);
+      final controller = ref.read(signInControllerProvider.notifier);
+      final success = await controller.submit(email: email, password: password, formType: _formType);
 
       if (success) {
         widget.onSignedIn?.call();
@@ -108,11 +103,10 @@ class _EmailPasswordSignInContentsState extends ConsumerState<EmailPasswordSignI
   @override
   Widget build(BuildContext context) {
     ref.listen<AsyncValue>(
-      singInScreenControllerProvider(widget.formType).select((state) => state.value),
+      signInControllerProvider,
       (_, state) => state.showSnackBarOnError(context),
     );
-
-    final SignInState state = ref.watch(singInScreenControllerProvider((widget.formType)));
+    final AsyncValue<void> state = ref.watch(signInControllerProvider);
     return ResponsiveScrollableCard(
       child: FocusScope(
         node: _node,
